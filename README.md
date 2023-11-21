@@ -5,6 +5,7 @@ FULL-ARM-05/01 serial port emulator made with Arduino Uno
 - Arduino UNO
 - 12v power supply
 - Colored wires
+- 8x 1kohm resistor
 - Serial type: 2400-N-8-1
 - The master sends out every 42ms a string of 10 bytes.
 
@@ -12,6 +13,9 @@ FULL-ARM-05/01 serial port emulator made with Arduino Uno
 - Connected the Repeater GND in common with the Arduino 12v in -
 - Connected the pins 2 and 5 of the serial data-line cable in common to the Arduino 12v in +, they are normally used to power up the optoisolator from the master
 - Connected the central pins, 3 and 4, to the Arduino pin 11 for the Tx with the SoftwareSerial library
+- Soldered to A2 and A5 pull-down resistors to gnd
+- Soldered to A1 and A4 pull-up resistors to +5v
+- Soldered to A0 and A3 resistors to both +5v and gnd for a voltage drop to 2.5v
 
 ### Communication interface
 | Byte | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
