@@ -39,7 +39,7 @@ Thanks for some of these precious information to https://www.reddit.com/r/Fencin
 
 #define msHitTime 5
 #define msDoubleTime 40
-#define msHitLampDelay 1200
+#define msHitLampDelay 1500
 #define msGNDLampDelay 0
 
 #define supHit 600
@@ -91,11 +91,11 @@ void loop() {
     if (lxAt >= msHitTime) {
       lxAt = 0;
       if (lYellow == false) {  // DA CONTROLLARE
-        if ((green == true) && (millis() <= greenTime + msDoubleTime)) {
+        if (green == false) {
           red = true;
           redTime = millis();
         } else {
-          if (green == false) {
+          if (millis() <= (greenTime + msDoubleTime)) {
             red = true;
             redTime = millis();
           }
@@ -108,11 +108,11 @@ void loop() {
     if (rxAt >= msHitTime) {
       rxAt = 0;
       if (rYellow == false) {  // DA CONTROLLARE
-        if ((red == true) && (millis() <= redTime + msDoubleTime)) {
+        if (red == false) {
           green = true;
           greenTime = millis();
         } else {
-          if (red == false) {
+          if (millis() <= (redTime + msDoubleTime)) {
             green = true;
             greenTime = millis();
           }
@@ -164,7 +164,7 @@ void loop() {
     if (lxAt == 0) lxATime = millis();
     lxAt++;
   }
-  
+
 
   if (currentTime % 100 == 0) {
     Serial.print(lxA);
