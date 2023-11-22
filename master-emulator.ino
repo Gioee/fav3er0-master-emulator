@@ -90,34 +90,42 @@ void loop() {
   if ((currentTime > (lxATime + msHitTime)) && lxATime != 0) {
     if (lxAt >= msHitTime) {
       lxAt = 0;
-      if (lYellow == false) {  // DA CONTROLLARE
+      lxATime = 0;
+      if (lYellow == false) {
         if (green == false) {
           red = true;
-          redTime = millis();
+          redTime = currentTime;
         } else {
-          if (millis() <= (greenTime + msDoubleTime)) {
+          if (currentTime <= (greenTime + msDoubleTime)) {
             red = true;
-            redTime = millis();
+            redTime = currentTime;
           }
         }
       }
+    } else {
+      lxAt = 0;
+      lxATime = 0;
     }
   }
 
   if ((currentTime > (rxATime + msHitTime)) && rxATime != 0) {
     if (rxAt >= msHitTime) {
       rxAt = 0;
-      if (rYellow == false) {  // DA CONTROLLARE
+      rxATime = 0;
+      if (rYellow == false) {
         if (red == false) {
           green = true;
-          greenTime = millis();
+          greenTime = currentTime;
         } else {
-          if (millis() <= (redTime + msDoubleTime)) {
+          if (currentTime <= (redTime + msDoubleTime)) {
             green = true;
-            greenTime = millis();
+            greenTime = currentTime;
           }
         }
       }
+    } else {
+      rxAt = 0;
+      rxATime = 0;
     }
   }
 
@@ -156,13 +164,13 @@ void loop() {
   }
 
   // HITs
-  if (rxA > supHit) {
-    if (rxAt == 0) rxATime = millis();
-    rxAt++;
-  }
   if (lxA > supHit) {
     if (lxAt == 0) lxATime = millis();
     lxAt++;
+  }
+  if (rxA > supHit) {
+    if (rxAt == 0) rxATime = millis();
+    rxAt++;
   }
 
 
